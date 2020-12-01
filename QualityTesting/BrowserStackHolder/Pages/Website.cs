@@ -1,5 +1,6 @@
 ﻿using BrowserStackHolder.Support;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -19,17 +20,15 @@ namespace BrowserStackHolder.Pages
             Pages = InitializePages();
         }
 
-        [Obsolete]
         private IWebDriver InitializeWebDriver()
         {
-            DesiredCapabilities caps = new DesiredCapabilities();
-
+            var caps = new DesiredCapabilities();
             caps.SetCapability("os", "Windows");
             caps.SetCapability("os_version", "10");
             caps.SetCapability("browser", "Chrome");
             caps.SetCapability("browser_version", "latest");
-            caps.SetCapability("browserstack.user", "USER");
-            caps.SetCapability("browserstack.key", "KEY");
+            caps.SetCapability("browserstack.user", Constants.USERNAME);
+            caps.SetCapability("browserstack.key", Constants.KEY);
             caps.SetCapability("name", "georgec13's First Test");
 
             return new RemoteWebDriver(
